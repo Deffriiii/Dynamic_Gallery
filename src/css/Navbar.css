@@ -1,0 +1,225 @@
+/* Mengatur gaya umum untuk navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #000; /* Warna latar belakang yang gelap */
+  color: white; /* Warna teks putih */
+  border-radius: 10px; /* Sudut membulat pada navbar */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Bayangan untuk kedalaman */
+  transition: background-color 0.3s; /* Transisi halus untuk perubahan warna */
+}
+
+/* Efek saat hover pada navbar */
+.navbar:hover {
+  background-color: #555; /* Mengubah warna latar belakang saat hover */
+}
+
+/* Gaya untuk logo */
+.logo {
+  font-size: 1.5rem; /* Ukuran font yang lebih besar untuk logo */
+  font-weight: bold; /* Membuat teks logo lebih tebal */
+  transition: transform 0.3s; /* Transisi halus untuk transformasi */
+}
+
+/* Memperbesar logo saat hover */
+.logo:hover {
+  transform: scale(1.1);
+}
+
+/* Mengatur daftar navigasi */
+.navbar ul {
+  list-style-type: none; /* Menghilangkan bullet point */
+  display: flex; /* Membuat daftar horizontal */
+  gap: 20px; /* Jarak antar item */
+  margin: 0; /* Menghilangkan margin default */
+  padding: 0; /* Menghilangkan padding default */
+}
+
+/* Mengatur item dalam daftar */
+.navbar li {
+  position: relative; /* Memungkinkan efek tambahan untuk item */
+}
+
+/* Gaya tautan di dalam navbar */
+.navbar a {
+  text-decoration: none; /* Menghilangkan garis bawah pada tautan */
+  color: white; /* Warna teks putih */
+  padding: 10px 15px; /* Memberikan padding */
+  border-radius: 5px; /* Sudut membulat pada tautan */
+  transition: background-color 0.3s, transform 0.3s; /* Transisi untuk efek hover */
+}
+
+/* Efek saat hover pada tautan */
+.navbar a:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Efek highlight saat hover */
+  transform: translateY(-2px); /* Mengangkat tautan sedikit saat hover */
+}
+
+/* Mengatur form di navbar */
+.navbar form {
+  display: flex; /* Menggunakan flexbox untuk penataan input */
+  align-items: center; /* Memusatkan input secara vertikal */
+}
+
+/* Styling untuk input teks agar lebih modern */
+.input {
+  display: block;
+  color: rgb(34, 34, 34);
+  background: linear-gradient(142.99deg, rgba(217, 217, 217, 0.63) 15.53%, rgba(243, 243, 243, 0.63) 88.19%);
+  border: none; /* Menghilangkan border default */
+  border-radius: 50px; /* Sudut membulat pada input */
+  padding: 10px 15px; /* Padding di dalam input */
+  outline: none; /* Menghilangkan outline default */
+  text-align: center; /* Memusatkan teks di dalam input */
+  width: 200px; /* Ukuran input */
+  transition: width 0.4s, box-shadow 0.4s; /* Transisi untuk perubahan ukuran */
+}
+
+/* Ukuran input saat hover */
+.input:hover {
+  width: 250px; /* Memperbesar ukuran input saat hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan saat hover */
+}
+
+/* Ukuran input saat fokus */
+.input:focus {
+  width: 260px; /* Memperbesar lebih jauh saat fokus */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Bayangan lebih kuat saat fokus */
+}
+
+/* Gaya untuk tombol close */
+.close-btn {
+  display: block;
+  cursor: pointer;
+  font-size: 2rem;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  color: white;
+  z-index: 1000; /* Pastikan berada di atas */
+}
+
+.hamburger {
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
+.hamburger div {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+/* Sembunyikan tombol hamburger saat menu aktif */
+.navbar.active .hamburger {
+  display: none;
+}
+
+
+/* Media Queries untuk Responsivitas */
+/* untuk layar hp */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row; /* Navbar tetap horizontal */
+    align-items: center; /* Tetap rata secara vertikal */
+    position: relative; /* Supaya hamburger dapat diatur posisinya relatif ke navbar */
+  }
+  .navbar ul a {
+    font-size: 1rem; /* Membesarkan ukuran teks pada link di menu hamburger */
+    padding: 15px 25px; /* Memberikan lebih banyak padding untuk tampilan lebih besar */
+    display: flex; /* Mengatur display ke flex */
+    align-items: center; /* Memusatkan teks secara vertikal */
+    justify-content: center; /* Memusatkan teks secara horizontal */
+    text-align: center; /* Memastikan teks rata tengah */
+  }
+  
+
+ /* Awal, menu tersembunyi */
+ .navbar ul {
+  display: flex; /* Tampilkan elemen flex */
+  position: absolute; /* Supaya menu melayang di atas taskbar */
+  top: 0; /* Tempatkan di bagian atas */
+  right: 0; /* Tempatkan di sebelah kanan */
+  background-color: #444; /* Latar belakang yang sesuai dengan navbar */
+  flex-direction: column; /* Daftar vertikal */
+  width: 50%; /* Mengatur lebar setengah dari layar */
+  height: 50vh; /* Mengatur tinggi setengah layar */
+  padding: 20px; /* Padding untuk ruang dalam */
+  text-align: right; /* Rata kanan untuk teks */
+  z-index: 999; /* Pastikan menu di atas konten lainnya */
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, top 0.3s ease-in-out; /* Tambahkan transisi untuk properti 'top' */
+  transform: translateY(-100%); /* Mulai dengan posisi tersembunyi di atas */
+  opacity: 0; /* Mulai dalam kondisi transparan */
+}
+
+/* Ketika hamburger diklik, tambahkan kelas aktif */
+.navbar.active ul {
+  transform: translateY(0); /* Pindahkan menu ke posisi terlihat */
+  opacity: 1; /* Atur ke opasitas penuh */
+  top: 50px; /* Sesuaikan ini untuk menurunkan tampilan menu */
+}
+
+  .hamburger {
+    display: block; /* Tampilkan hamburger menu */
+    cursor: pointer; /* Kursor sebagai pointer */
+    position: absolute; /* Gunakan posisi absolut */
+    right: 20px; /* Tempatkan di kanan atas */
+    top: 15px; /* Beri jarak dari atas */
+  }
+
+  /* Styling untuk hamburger menu */
+  .hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0; /* Jarak antar garis hamburger */
+    transition: 0.3s; /* Transisi halus */
+  }
+
+  /* Pusatkan logo dan input */
+  .logo {
+    margin-left: 10px; /* Tetapkan posisi logo ke kiri */
+    font-size: 1.2rem;
+  }
+
+  .input {
+    width: 100px; /* Mengatur lebar input menjadi 150px */
+    height: 30px; /* Mengatur tinggi input */
+    padding: 5px 10px; /* Mengurangi padding di dalam input */
+    font-size: 14px; /* Mengurangi ukuran teks di dalam input */
+    margin-right: 50px;
+  }
+  
+  .input:hover {
+    width: 100px; /* Memperbesar ukuran input saat hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan saat hover */
+  }
+  .input:focus {
+    width: 180px; /* Memperbesar lebih jauh saat fokus */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Bayangan lebih kuat saat fokus */
+  }
+}
+
+/* Sembunyikan hamburger menu pada layar besar */
+@media (min-width: 769px) {
+  .hamburger {
+    display: none; /* Sembunyikan hamburger di layar besar */
+  }
+
+  .navbar ul {
+    display: flex; /* Tampilkan menu navigasi sebagai horizontal pada layar besar */
+    position: static; /* Kembali ke posisi default */
+    flex-direction: row; /* Horizontal */
+    transform: none; /* Hapus efek transisi */
+    opacity: 1; /* Pastikan tetap terlihat */
+  }
+}
+
+
