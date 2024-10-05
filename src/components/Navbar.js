@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/Navbar.css';
 
-const Navbar = ({ categories, onSearch, onCategorySelect }) => {
+const Navbar = ({ categories, onSearch, onCategorySelect, isDarkMode, toggleTheme }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isActive, setIsActive] = useState(false); // State untuk toggle menu
 
@@ -22,7 +22,7 @@ const Navbar = ({ categories, onSearch, onCategorySelect }) => {
   };
 
   return (
-    <nav className={`navbar ${isActive ? 'active' : ''}`}>
+    <nav className={`navbar ${isActive ? 'active' : ''} ${isDarkMode ? 'dark' : 'light'}`}>
       {/* Link ke halaman home saat logo diklik */}
       <Link to="/" className="logo" onClick={() => setIsActive(false)}>
         Dynamic <span>Gallery</span>
@@ -36,7 +36,6 @@ const Navbar = ({ categories, onSearch, onCategorySelect }) => {
           <div></div>
         </div>
       ) : (
-        // Close Button
         <div className="close-btn" onClick={toggleMenu}>
           &#10005; {/* Unicode untuk simbol 'X' */}
         </div>
@@ -52,7 +51,8 @@ const Navbar = ({ categories, onSearch, onCategorySelect }) => {
         ))}
       </ul>
 
-      <form onSubmit={handleSubmit}>
+      {/* Search Bar */}
+      <form onSubmit={handleSubmit} className="search-form">
         <input
           type="text"
           name="text"
@@ -62,6 +62,11 @@ const Navbar = ({ categories, onSearch, onCategorySelect }) => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
+
+      {/* Toggle Tema - Ditempatkan di sebelah kanan search bar */}
+      <button className="theme-toggle" onClick={toggleTheme}>
+        {isDarkMode ? '🌞' : '🌙'}
+      </button>
     </nav>
   );
 };

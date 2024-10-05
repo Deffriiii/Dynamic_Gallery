@@ -1,0 +1,199 @@
+.photo-detail-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9); /* Latar belakang gelap dengan transparansi tinggi */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Pastikan pop-up berada di atas elemen lainnya */
+    backdrop-filter: blur(8px); /* Efek blur di latar belakang */
+}
+
+.photo-detail {
+    background: rgba(255, 255, 255, 0.95); /* Latar belakang putih dengan transparansi */
+    border-radius: 16px; /* Sudut membulat yang lebih halus */
+    padding: 20px; /* Mengurangi padding untuk ruang yang lebih kecil */
+    text-align: center;
+    max-width: 500px; /* Mengurangi lebar maksimum pop-up */
+    width: 90%; /* Lebar 90% dari tampilan */
+    max-height: 80vh; /* Tinggi maksimum pop-up (80% dari tinggi viewport) */
+    overflow-y: auto; /* Menambahkan scroll jika konten melebihi tinggi maksimum */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); /* Bayangan lebih dalam dan lembut */
+    position: relative; /* Posisi relatif untuk menempatkan tombol tutup */
+    transition: transform 0.3s ease; /* Transisi halus untuk efek muncul */
+    animation: fadeIn 0.5s ease; /* Animasi saat pop-up muncul */
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* Muncul dari atas */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close {
+    cursor: pointer;
+    font-size: 28px; /* Ukuran font untuk tombol tutup */
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #333; /* Warna untuk tombol tutup */
+    transition: color 0.3s; /* Transisi untuk perubahan warna */
+}
+
+.close:hover {
+    color: #ff4d4d; /* Warna tombol saat hover */
+}
+
+.photo-detail img {
+    max-width: 90%; /* Gambar responsif */
+    max-height: 400px; /* Batasi tinggi maksimum gambar */
+    height: auto; /* Tinggi otomatis */
+    border-radius: 12px; /* Sudut membulat untuk gambar */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi untuk efek zoom */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Bayangan lembut untuk gambar */
+    margin-bottom: 20px; /* Jarak antara gambar dan deskripsi */
+}
+
+.photo-detail h2 {
+    margin: 10px 0; /* Jarak atas dan bawah untuk judul */
+    font-size: 20px; /* Ukuran font untuk judul */
+    color: #333; /* Warna untuk teks judul */
+}
+
+.photo-detail p {
+    margin: 5px 0; /* Jarak untuk deskripsi */
+    color: #555; /* Warna untuk teks deskripsi */
+}
+
+.view-large-button {
+    display: inline-block;
+    margin-top: 20px; /* Jarak yang lebih besar di atas tombol */
+    padding: 12px 24px; /* Padding lebih besar untuk tombol */
+    background-color: #007BFF; /* Warna tombol */
+    color: #fff; /* Warna teks tombol */
+    border-radius: 5px; /* Sudut membulat untuk tombol */
+    text-decoration: none; /* Menghilangkan garis bawah */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Transisi untuk perubahan warna dan transformasi */
+    cursor: pointer; /* Menunjukkan bahwa ini adalah tombol */
+    border: none; /* Menghilangkan border untuk tombol */
+    font-size: 16px; /* Ukuran font untuk tombol */
+    width: 100%; /* Tombol mengisi lebar */
+    text-align: center; /* Teks di tengah */
+}
+
+.view-large-button:hover {
+    background-color: #0056b3; /* Warna tombol saat hover */
+    transform: scale(1.05); /* Sedikit efek zoom pada tombol saat hover */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Bayangan lebih dalam saat hover */
+}
+
+/* Gambar besar */
+.large-image-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.9); /* Latar belakang gelap untuk gambar besar */
+    z-index: 2000; /* Pastikan gambar besar berada di atas pop-up */
+    padding: 20px;
+    overflow: hidden; /* Menghindari scroll */
+}
+
+.large-image {
+    max-width: 100%; /* Gambar besar responsif */
+    max-height: 80%; /* Batasi tinggi maksimum gambar besar */
+    border-radius: 8px; /* Sudut membulat untuk gambar besar */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); /* Bayangan untuk gambar besar */
+}
+
+.close-large-image {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px; /* Ukuran font untuk tombol tutup gambar besar */
+    color: white; /* Warna untuk tombol tutup gambar besar */
+    cursor: pointer;
+}
+
+.close-large-image:hover {
+    color: #ff4d4d; /* Warna saat hover untuk tombol tutup gambar besar */
+}
+
+/* Media Queries untuk Responsivitas */
+@media (max-width: 768px) { /* Tablet dan lebih kecil */
+    .photo-detail {
+        padding: 20px; /* Padding lebih kecil untuk ruang yang lebih nyaman */
+        max-width: 90%; /* Lebar maksimum pop-up */
+        width: 80%; /* Lebar 80% dari tampilan */
+    }
+
+    .photo-detail img {
+        max-width: 100%; /* Memastikan gambar tidak melebihi lebar pop-up */
+        max-height: 300px; /* Batasi tinggi maksimum gambar */
+        height: auto; /* Tinggi otomatis untuk menjaga proporsi */
+        border-radius: 12px; /* Sudut membulat untuk gambar */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi untuk efek zoom */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Bayangan lembut untuk gambar */
+    }
+    
+
+    .view-large-button {
+        padding: 10px 20px; /* Padding lebih kecil untuk tombol */
+        font-size: 14px; /* Ukuran font lebih kecil untuk tombol */
+    }
+    .large-image-container {
+        position: fixed;
+        top: 0; /* Atur posisi atas menjadi 0 */
+        left: 0; /* Atur posisi kiri menjadi 0 */
+        width: 100%; /* Lebar penuh */
+        height: 100%; /* Tinggi penuh */
+        background: rgba(0, 0, 0, 0.9); /* Latar belakang hitam semi-transparan */
+        display: flex; /* Menggunakan flexbox untuk pusatkan gambar */
+        justify-content: center; /* Pusatkan secara horizontal */
+        align-items: center; /* Pusatkan secara vertikal */
+        z-index: 1001; /* Pastikan berada di atas pop-up */
+    }
+    
+    .large-image {
+        max-width: 100%; /* Lebar maksimum gambar 100% */
+        max-height: 100%; /* Tinggi maksimum gambar 100% */
+        object-fit: contain; /* Memastikan gambar menjaga proporsinya */
+        border-radius: 0; /* Menghilangkan sudut membulat */
+    }
+    
+    
+}
+
+@media (max-width: 480px) { /* Smartphone */
+    .close {
+        font-size: 20px; /* Ukuran font lebih kecil untuk tombol tutup di ponsel */
+    }
+
+    .photo-detail {
+        padding: 15px; /* Padding lebih kecil untuk ruang yang lebih nyaman */
+        width: 90%; /* Lebar maksimum pop-up */
+    }
+
+    .view-large-button {
+        padding: 8px 16px; /* Padding lebih kecil untuk tombol */
+        font-size: 12px; /* Ukuran font lebih kecil untuk tombol */
+    }
+
+    .close-large-image {
+        font-size: 25px; /* Ukuran font untuk tombol tutup gambar besar di ponsel */
+    }
+}

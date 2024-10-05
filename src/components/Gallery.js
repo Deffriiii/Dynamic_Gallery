@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
+import PhotoDetail from '../components/PhotoDetail'; // Pastikan jalur impor sesuai dengan struktur direktori Anda
 import '../css/Gallery.css';
 
 const Gallery = ({ category, searchTerm }) => {
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1); // State untuk halaman saat ini
+  const [isPhotoDetailOpen, setIsPhotoDetailOpen] = useState(false); // State untuk pop-up
+  const [selectedPhoto, setSelectedPhoto] = useState(null); // State untuk foto terpilih
   const observer = useRef(); // Menggunakan ref untuk IntersectionObserver
   const lastPhotoRef = useRef();
 
@@ -36,6 +39,16 @@ const Gallery = ({ category, searchTerm }) => {
   useEffect(() => {
     fetchPhotos();
   }, [fetchPhotos]);
+
+  const openPhotoDetail = (photo) => {
+    setSelectedPhoto(photo);
+    setIsPhotoDetailOpen(true); // Buka pop-up
+  };
+
+  const closePhotoDetail = () => {
+    setIsPhotoDetailOpen(false); // Tutup pop-up
+    setSelectedPhoto(null); // Reset foto terpilih
+  };
 
   // Fungsi untuk mengunduh gambar
   const downloadImage = async (url, filename) => {
@@ -88,16 +101,14 @@ const Gallery = ({ category, searchTerm }) => {
     <div className="gallery">
       {photos.length > 0 ? (
         photos.map((photo, index) => {
-          const isLastPhoto = index === photos.length - 1; // Memeriksa apakah ini adalah foto terakhir
-          const { width, height } = photo; // Mengambil width dan height dari objek photo
+          const isLastPhoto = index === photos.length - 1;
+          const { width, height } = photo;
           return (
             <div key={photo.id} className="photo" ref={isLastPhoto ? lastPhotoRef : null}>
-              <img src={photo.urls.small} alt={photo.alt_description} />
-              {/* Menampilkan ukuran foto di kanan atas */}
+              <img src={photo.urls.small} alt={photo.alt_description} onClick={() => openPhotoDetail(photo)} />
               <div className="photo-size">
-                {width} x {height} {/* Menampilkan ukuran foto */}
+                {width} x {height}
               </div>
-              {/* Tombol unduh gambar */}
               <button className="button" onClick={() => downloadImage(photo.urls.full, `photo-${photo.id}.jpg`)}>
                 <span className="button_lg">
                   <span className="button_sl"></span>
@@ -110,7 +121,10 @@ const Gallery = ({ category, searchTerm }) => {
       ) : (
         <p>No photos found.</p>
       )}
-      {loading && <p>Loading more photos...</p>} {/* Menampilkan loading */}
+      {loading && <p>Loading more photos...</p>}
+      
+      {/* Pop-up untuk menampilkan detail gambar */}
+      <PhotoDetail isOpen={isPhotoDetailOpen} onClose={closePhotoDetail} photo={selectedPhoto} />
     </div>
   );
 };

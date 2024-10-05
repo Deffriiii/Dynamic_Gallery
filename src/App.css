@@ -1,0 +1,23 @@
+/* Warna tema terang */
+.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  /* Warna tema gelap */
+  .dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+  
+  /* Tombol untuk toggle tema */
+  .theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+  
